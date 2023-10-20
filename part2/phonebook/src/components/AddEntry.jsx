@@ -7,6 +7,8 @@ const AddEntry = ({
   setNewNumber,
   setPersons,
   setSearchName,
+  setNewAdd,
+  setErrorMessage,
 }) => {
   const addPerson = (event) => {
     event.preventDefault();
@@ -30,13 +32,26 @@ const AddEntry = ({
             (person) => person.name.toLowerCase() === newName.toLowerCase()
           )[0];
           const newEntry = { ...prevEntry, number: newNumber };
-          personService.update(newEntry.id, newEntry).then((response) => {
-            setPersons(
-              fullPersonList.map((person) =>
-                person.id !== newEntry.id ? person : response.data
-              )
-            );
-          });
+          personService
+            .update(newEntry.id, newEntry)
+            .then((response) => {
+              setPersons(
+                fullPersonList.map((person) =>
+                  person.id !== newEntry.id ? person : response.data
+                )
+              );
+            })
+            .catch((error) => {
+              console.log(error);
+              setErrorMessage(
+                `Information of '${newName}' has already been removed from server`
+              );
+              setTimeout(() => {
+                setErrorMessage(null);
+              }, 5000);
+            });
+
+          setNewAdd(newName);
         }
       } else {
         personService
@@ -45,9 +60,14 @@ const AddEntry = ({
             number: newNumber,
           })
           .then((response) => setPersons(fullPersonList.concat(response))); // some issue here as when we add a new entry while on filter it doesent get added
+
+        setNewAdd(newName);
       }
       setSearchName("");
       setNewName("");
+      setTimeout(() => {
+        setNewAdd("");
+      }, 5000);
       setNewNumber("");
     });
   };

@@ -1,0 +1,64 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "How to talk to people",
+    "author": "Levi Ackerman",
+    "url": "google.com/leviAckermanBook/how_to_talk_to_humans",
+    "likes": "785"
+}
+
+###
+GET http://localhost:3003/api/blogs
+
+###
+
+DELETE http://localhost:3003/api/blogs/6546bb81a87a6501b8c7d6c6
+
+###
+PUT http://localhost:3003/api/blogs/6546bb400d1ff337a82f84de
+Content-Type: application/json
+
+{
+    "likes": "10045905"
+}
+
+###
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+    "username": "Alan",
+    "name": "Turing",
+    "password": "asdf"
+}
+
+###
+GET http://localhost:3003/api/users
+
+###
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+    "username": "Shivang",
+    "name": "Shivang",
+    "password": "asdf"
+}
+
+###
+POST http://localhost:3003/api/blogs/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNoaXZhbmciLCJpZCI6IjY1NWZkYjYzNDVlMTAwZDBlYjY4ZWRhNCIsImlhdCI6MTcwMDc4MDkzOSwiZXhwIjoxNzAwNzg0NTM5fQ.6llRW1pPYjIDWI-5V9qSRBKf9GXVrgUgf0SSPZlovvo
+
+{
+    "title": "Type wars",
+    "author": "Robert C. Martin",
+    "url": "http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html",
+    "likes": 2
+}
+
+
+###
+DELETE http://localhost:3003/api/blogs/655fb5e16ea69019713bc195
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5ld3VzZXIxIiwiaWQiOiI2NTVlODUxNGJjNGZhM2FlZTU4NDQ4OWQiLCJpYXQiOjE3MDA3NzEwMjIsImV4cCI6MTcwMDc3NDYyMn0.w7uoTDwsP2dEJvGDyu0cUDyhAIsX6-g-_YyztgUZ9Lo
